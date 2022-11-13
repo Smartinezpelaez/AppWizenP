@@ -32,7 +32,8 @@ namespace AppWizen.BLL.Services
                 {
                     listGetAppSuser.Add(new DTOs.AppUserDTO
                     {
-                        Username = (string)item["username"],
+                        UserId = (int)item["UserId"],
+                        Username = (string)item["Username"],
                         Password = (string)item["password"],
                         ChangePasswordDate = (DateTime)item["changePasswordDate"],
                         Active = (bool)item["active"],

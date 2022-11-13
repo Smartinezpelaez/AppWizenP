@@ -4,6 +4,8 @@
       method="post"
       enctype="multipart/form-data">
 
+    <h4>Create</h4>
+
     <div class="form-row">
         <div class="col-md-4">
             @Html.LabelFor(m => m.Username)
@@ -31,16 +33,22 @@
 
         <div class="col-md-4">
             @Html.LabelFor(m => m.RoleId)
-            @Html.EditorFor(m => m.RoleId, new { HtmlTextWriterAttribute = new { @class = "form-control" } })
+            @Html.DropDownListFor(m => m.RoleId,
+                                   new SelectList(ViewBag.ListGetAppUserRoleServices, "RoleId", "RoleName"),
+                                   new { @class = "form-control" })
+
             @Html.ValidationMessageFor(m => m.RoleId, "", new { @class = "text-danger" })
         </div>
 
         <div class="col-md-4">
             @Html.LabelFor(m => m.ContactId)
-            @Html.EditorFor(m => m.ContactId, new { HtmlTextWriterAttribute = new { @class = "form-control" } })
+            @Html.DropDownListFor(m => m.ContactId,
+                                   new SelectList(ViewBag.ListGetContacServices, "ContactId", "FirstName"),
+                                   new { @class = "form-control" })
+
             @Html.ValidationMessageFor(m => m.ContactId, "", new { @class = "text-danger" })
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" hidden>
             @Html.LabelFor(m => m.ResultMessage)
             @Html.EditorFor(m => m.ResultMessage, new { HtmlTextWriterAttribute = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.ResultMessage, "", new { @class = "text-danger" })
@@ -49,6 +57,7 @@
     </div>
     <div class="form-row">
         <input type="submit" value="Create" class="btn btn-primary" />
+        @Html.ActionLink("Back to List", "Index")
     </div>
 
 </form>

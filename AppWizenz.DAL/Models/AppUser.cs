@@ -14,7 +14,7 @@ namespace AppWizenz.DAL.Models
         public DateTime CreationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public DateTime? ChangePasswordDate { get; set; }
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
         public int ContactId { get; set; }
         public int RoleId { get; set; }
         public string ResultMessage { get; set; }

@@ -28,6 +28,13 @@ namespace AppWizen.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            BLL.Services.AppUserRoleService appUserRoleService = new AppUserRoleService();
+            BLL.Services.ContactServices contactServices = new ContactServices();
+            BLL.Services.AppUserService appUser = new BLL.Services.AppUserService();
+
+          //  ViewBag.ListGetAppUserService = appUser.GetAppServices();
+            ViewBag.ListGetContacServices = contactServices.GetContacServices();
+            ViewBag.ListGetAppUserRoleServices = appUserRoleService.GetAppUserRoleServices();
 
             return View();
         }
@@ -40,10 +47,14 @@ namespace AppWizen.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(string id)
         {
-
+            BLL.Services.AppUserRoleService appUserRoleService = new AppUserRoleService();
+            BLL.Services.ContactServices contactServices = new ContactServices();
             BLL.Services.AppUserService appUser = new BLL.Services.AppUserService();
 
-            //ViewBag.ListGetAppUserService = createAppUserService.CreateAppUsers();
+         //   ViewBag.ListGetAppUserService = appUser.GetAppServices();
+            ViewBag.ListGetContacServices = contactServices.GetContacServices();
+            ViewBag.ListGetAppUserRoleServices = appUserRoleService.GetAppUserRoleServices();
+         
 
             var username = Request.Form["Username"];
             var password = Request.Form["Password"];
@@ -72,15 +83,27 @@ namespace AppWizen.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit()
         {
+            BLL.Services.AppUserRoleService appUserRoleService = new AppUserRoleService();
+            BLL.Services.ContactServices contactServices = new ContactServices();
+            BLL.Services.AppUserService appUser = new BLL.Services.AppUserService();
 
-           return View();
+            ViewBag.ListGetAppUserService = appUser.GetAppServices();
+            ViewBag.ListGetContacServices = contactServices.GetContacServices();
+            ViewBag.ListGetAppUserRoleServices = appUserRoleService.GetAppUserRoleServices();
+
+            return View();
         }
 
         [HttpPost]
         public async Task<ActionResult> Edit(int? id)
         {
-
+            BLL.Services.AppUserRoleService appUserRoleService = new AppUserRoleService();
+            BLL.Services.ContactServices contactServices = new ContactServices();
             BLL.Services.AppUserService appUser = new BLL.Services.AppUserService();
+
+            ViewBag.ListGetAppUserService = appUser.GetAppServices();
+            ViewBag.ListGetContacServices = contactServices.GetContacServices();
+            ViewBag.ListGetAppUserRoleServices = appUserRoleService.GetAppUserRoleServices();
 
             //ViewBag.ListGetAppUserService = createAppUserService.CreateAppUsers();
 
