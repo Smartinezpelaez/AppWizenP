@@ -38,7 +38,7 @@ namespace AppWizen.BLL.Services
                         ChangePasswordDate = (DateTime)item["changePasswordDate"],
                         Active = (bool)item["active"],
                         RoleId = (int)item["roleId"],
-                       // ContactId = (int)item["ContactId"]
+                        ContactId = (int)item["ContactId"]
 
                     });
                 }
@@ -147,8 +147,7 @@ namespace AppWizen.BLL.Services
 
                 //Parametros
                 command.Parameters.AddRange(new SqlParameter[] {
-                     new SqlParameter("@userId ",userId)
-             
+                     new SqlParameter("@userId ",userId)            
 
                 });
 

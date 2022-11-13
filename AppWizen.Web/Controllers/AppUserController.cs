@@ -54,24 +54,28 @@ namespace AppWizen.Web.Controllers
          //   ViewBag.ListGetAppUserService = appUser.GetAppServices();
             ViewBag.ListGetContacServices = contactServices.GetContacServices();
             ViewBag.ListGetAppUserRoleServices = appUserRoleService.GetAppUserRoleServices();
-         
 
-            var username = Request.Form["Username"];
-            var password = Request.Form["Password"];
-            var changePasswordDate = Convert.ToDateTime(Request.Form["ChangePasswordDate"]);
-            var active = Convert.ToBoolean(Request.Form["Active"]);
-            var roleId = Convert.ToInt32(Request.Form["RoleId"]);
-            var contactId = Convert.ToInt32(Request.Form["ContactId"]);
-            var resultMessage = Request.Form["resultMessage"];
+            if (ModelState.IsValid) 
+            {
+                var username = Request.Form["Username"];
+                var password = Request.Form["Password"];
+                var changePasswordDate = Convert.ToDateTime(Request.Form["ChangePasswordDate"]);
+                var active = Convert.ToBoolean(Request.Form["Active"]);
+                var roleId = Convert.ToInt32(Request.Form["RoleId"]);
+                var contactId = Convert.ToInt32(Request.Form["ContactId"]);
+                var resultMessage = Request.Form["resultMessage"];
 
-            //Crea el App User
-            appUser.CreateAppUsers(username,
-                password,
-                changePasswordDate,
-                active,
-                roleId,
-                contactId,
-              resultMessage);
+                //Crea el App User
+                appUser.CreateAppUsers(username,
+                    password,
+                    changePasswordDate,
+                    active,
+                    roleId,
+                    contactId,
+                  resultMessage);
+                return RedirectToAction("Index");
+            }
+           
             return View();
         }
 
@@ -104,23 +108,28 @@ namespace AppWizen.Web.Controllers
             ViewBag.ListGetAppUserService = appUser.GetAppServices();
             ViewBag.ListGetContacServices = contactServices.GetContacServices();
             ViewBag.ListGetAppUserRoleServices = appUserRoleService.GetAppUserRoleServices();
+            
+            if (ModelState.IsValid)
+            {
+                var userId = Convert.ToInt32(Request.Form["userId"]);
+                var changePasswordDate = Convert.ToDateTime(Request.Form["ChangePasswordDate"]);
+                var active = Convert.ToBoolean(Request.Form["Active"]);
+                var roleId = Convert.ToInt32(Request.Form["RoleId"]);
+                var contactId = Convert.ToInt32(Request.Form["ContactId"]);
 
-            //ViewBag.ListGetAppUserService = createAppUserService.CreateAppUsers();
 
-            var userId = Convert.ToInt32(Request.Form["userId"]);
-            var changePasswordDate = Convert.ToDateTime(Request.Form["ChangePasswordDate"]);
-            var active = Convert.ToBoolean(Request.Form["Active"]);
-            var roleId = Convert.ToInt32(Request.Form["RoleId"]);
-            var contactId = Convert.ToInt32(Request.Form["ContactId"]);
+                //Edita el AppUser
+                appUser.UpdateAppUsers(userId,
+                    changePasswordDate.Date,
+                    active,
+                    roleId,
+                    contactId
 
+                );
 
-            //Edita el AppUser
-            appUser.UpdateAppUsers(userId,
-                changePasswordDate.Date,
-                active,
-                roleId,
-                contactId
-            );
+                return RedirectToAction("Index");
+            }
+           
             return View();
         }
 
@@ -130,7 +139,17 @@ namespace AppWizen.Web.Controllers
         /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Delete()
-        {          
+        {
+            BLL.Services.AppUserRoleService appUserRoleService = new AppUserRoleService();
+            BLL.Services.ContactServices contactServices = new ContactServices();
+            BLL.Services.AppUserService appUser = new BLL.Services.AppUserService();
+
+            ViewBag.ListGetAppUserService = appUser.GetAppServices();
+            ViewBag.ListGetContacServices = contactServices.GetContacServices();
+            ViewBag.ListGetAppUserRoleServices = appUserRoleService.GetAppUserRoleServices();
+
+           
+
 
             return View();
         }
@@ -139,16 +158,20 @@ namespace AppWizen.Web.Controllers
         public ActionResult Delete(int id)
         {
 
+            BLL.Services.AppUserRoleService appUserRoleService = new AppUserRoleService();
+            BLL.Services.ContactServices contactServices = new ContactServices();
             BLL.Services.AppUserService appUser = new BLL.Services.AppUserService();
 
-            //ViewBag.ListGetAppUserService = createAppUserService.CreateAppUsers();
+            ViewBag.ListGetAppUserService = appUser.GetAppServices();
+            ViewBag.ListGetContacServices = contactServices.GetContacServices();
+            ViewBag.ListGetAppUserRoleServices = appUserRoleService.GetAppUserRoleServices();
 
-            //var userId = Convert.ToInt32(Request.Form["userId"]);
-            //Elimina el AppUser
+
+
             appUser.DeleteAppUsers(id);
 
 
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

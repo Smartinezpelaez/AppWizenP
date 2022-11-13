@@ -24,11 +24,11 @@ namespace AppWizen.BLL.DTOs
         [Required(ErrorMessage = "The field Active is required")]
         public bool? Active { get; set; }
 
-        [Display(Name = "Role")]
+        [Display(Name = "Role_Id")]
         [Required(ErrorMessage = "The field RoleId is required")]
         public int RoleId { get; set; }
 
-        [Display(Name = "Contacto")]
+        [Display(Name = "Contact_Id")]
         [Required(ErrorMessage = "The field ContactId is required")]
         public int ContactId { get; set; }
 
